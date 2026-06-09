@@ -1,6 +1,17 @@
+'use client'
+
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
+
+// export function generateStaticParams() {
+//   return routing.locales.map((locale) => ({locale}));
+// }
+
 export default function Home() {
+
+  const t = useTranslations('');
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -56,7 +67,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Documentation
+            {t('welcome')}
           </a>
         </div>
       </main>
