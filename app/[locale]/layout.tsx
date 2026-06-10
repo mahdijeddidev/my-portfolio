@@ -7,6 +7,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 type Props = {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ const vazirmatn = localFont({
   src: "../../fonts/vazir/Vazirmatn.woff2",
   variable: "--font-vazirmatn",
   display: "swap",
-  weight: "100 900",  
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -53,13 +54,20 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
+      suppressHydrationWarning
       dir={isPersian ? "rtl" : "ltr"}
-          className={`${isPersian ? vazirmatn.variable : geistSans.variable} h-full`}
-
+      className={`${isPersian ? vazirmatn.variable : geistSans.variable} h-full`}
     >
       <body className="min-h-full antialiased flex flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
