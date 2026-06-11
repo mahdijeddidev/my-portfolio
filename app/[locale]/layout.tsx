@@ -60,12 +60,7 @@ export default async function RootLayout({ children, params }: Props) {
     >
       <body className="min-h-full antialiased flex flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeProvider >
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>
