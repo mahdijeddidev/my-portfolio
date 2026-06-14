@@ -48,7 +48,7 @@ export default function HeroContent({
                     download="Mahdi-Jeddi-Resume.pdf"
                     className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-primary/90 transition-all cursor-pointer active:scale-98"
                 >
-                    <MyIcon icon={ArrowDown01Icon} size={18} />
+                    <MyIcon icon={ArrowDown01Icon} size={18} className="animate-bounce" />
                     {downloadText}
                 </a>
 

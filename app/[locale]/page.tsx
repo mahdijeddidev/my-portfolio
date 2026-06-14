@@ -31,7 +31,7 @@ export default function Home() {
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-items-center">
 
         {/* Visual Side */}
-        <HeroImage src="/logo-manifest-512x512.png" alt="Mahdi jeddi Profile Picture" />
+        <HeroImage src="/photo-me.png" alt="Mahdi jeddi Profile Picture" />
 
         {/* Text and Actions Side */}
         <HeroContent
