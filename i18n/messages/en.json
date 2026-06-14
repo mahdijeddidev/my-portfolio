@@ -26,5 +26,23 @@
     "statProjValue": "8+",
     "statProjLabel": "Projects Delivered",
     "actionText": "View My Skills"
+  },
+  "SkillsPage": {
+    "badge": "My Toolkit",
+    "title": "Technical Expertise",
+    "subtitle": "3+ years of architecting interactive front-ends, scaling state infrastructure, managing data networks, and engineering production workflows.",
+    "actionText": "See my work in action",
+    "catCoreTitle": "Core Architecture",
+    "catCoreDesc": "Engineering high-performance SSR/SSG sites and typed web systems.",
+    "catStateTitle": "State Management",
+    "catStateDesc": "Managing complex application state architectures with atomic and relational frameworks.",
+    "catUiTitle": "UI & Design Systems",
+    "catUiDesc": "Crafting fluid responsive layouts using accessible, atomic style patterns.",
+    "catAdvancedTitle": "Data Fetching & Real-time",
+    "catAdvancedDesc": "Developing offline-first architectures, state sync caching, and WebSocket streams.",
+    "catMobileTitle": "Mobile Systems",
+    "catMobileDesc": "Building cross-platform mobile environments and native android compilation hooks.",
+    "catOpsTitle": "DevOps & Optimization",
+    "catOpsDesc": "Deploying apps to cloud servers and scaling SEO systems for optimal load speeds."
   }
 }
