@@ -1,3 +1,11 @@
 {
-    "welcome":"your welcome"
+  "welcome": "your welcome",
+  "Navbar": {
+    "home": "Home",
+    "about": "About Me",
+    "skills": "My Skills",
+    "projects": "My Projects",
+    "contact": "Contact Me",
+    "heroText": "Welcome"
+  }
 }

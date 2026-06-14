@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
 
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
-import { getMessages, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import Navbar from "@/components/shared/Navbar/Navbar";
+import { routing } from "@/i18n/routing";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -32,7 +32,13 @@ export const metadata: Metadata = {
     template: "%s | Mahdi Portfolio",
     default: "Mahdi - Full Stack Developer Portfolio",
   },
+
   description: "Professional portfolio showcasing web development projects",
+
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -58,10 +64,20 @@ export default async function RootLayout({ children, params }: Props) {
       dir={isPersian ? "rtl" : "ltr"}
       className={`${isPersian ? vazirmatn.variable : geistSans.variable} h-full`}
     >
-      <body className="min-h-full antialiased flex flex-col">
+      <body
+        className={
+          `
+        min-h-screen bg-background text-foreground antialiased flex flex-col
+        ${isPersian ? "font-[family-name:var(--font-vazirmatn)]" : "font-[family-name:var(--font-geist-sans)]"}
+        `
+        }
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider >
-            {children}
+            <Navbar />
+            <main className="flex-1 pt-16 flex flex-col">
+              {children}
+            </main>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

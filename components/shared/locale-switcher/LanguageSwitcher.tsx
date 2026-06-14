@@ -1,33 +1,42 @@
-'use client';
+"use client";
 
- 
-import { usePathname, useRouter } from '@/i18n/navigation';
-import {useLocale} from 'next-intl';
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { TranslationIcon } from "@hugeicons/core-free-icons";
+import { useLocale } from "next-intl";
+import MyIcon from "../Icon/MyIcons";
 
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
-  const switchLanguage = (newLocale: string) => {
-    router.replace(pathname, {locale: newLocale});
+  const toggleLanguage = () => {
+    const nextLocale = currentLocale === "en" ? "fa" : "en";
+    router.replace(pathname, { locale: nextLocale });
   };
 
   return (
-    <div className="flex gap-2">
-      {['en', 'fa'].map((lang) => (
-        <button
-          key={lang}
-          onClick={() => switchLanguage(lang)}
-          className={`px-2 py-1 rounded ${
-            locale === lang 
-              ? 'bg-blue-500 text-white' 
-              : 'bg-gray-200 dark:bg-gray-700'
-          }`}
+    <button
+      onClick={toggleLanguage}
+      className="group relative flex items-center gap-1 h-9 px-2 rounded-full bg-muted/50 hover:bg-muted border border-border/40 transition-all duration-300 cursor-pointer select-none overflow-hidden active:scale-95"
+      title={currentLocale === "en" ? "تغییر زبان به فارسی" : "Switch language to English"}
+    >
+
+      {/* Globe/Translation Icon */}
+      <MyIcon
+        icon={TranslationIcon}
+        size={16}
+        className="text-muted-foreground group-hover:text-foreground transition-colors duration-200 z-10"
+      />
+
+      {/* Text Container Wrapper */}
+      <div className=" flex items-center justify-center  h-full text-[10px] font-medium tracking-wider z-10">
+        <span
+          className={'transition-colors duration-300  text-center text-foreground'}
         >
-          {lang.toUpperCase()}
-        </button>
-      ))}
-    </div>
+          {currentLocale === 'fa' ? "En" : "فا"}
+        </span>
+      </div>
+    </button>
   );
 }
