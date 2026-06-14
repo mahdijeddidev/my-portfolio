@@ -7,5 +7,22 @@
     "projects": "پروژه‌های من",
     "contact": "تماس با من",
     "heroText": "خوش آمدید"
+  },
+  "HomePage": {
+    "greetingBadge": "به دنیای من خوش آمدید",
+    "title": "سلام، من",
+    "name": "مهدی جدی",
+    "description": "توسعه‌دهنده فول‌استک متخصص در ساخت معماری‌های وب مقیاس‌پذیر و رابط‌های کاربری روان.",
+    "downloadResume": "دانلود رزومه",
+    "contactMe": "ارتباط با من"
+  },
+
+  "Home": {
+    "greeting": "👋 سلام، من",
+    "name": "مهدی جدی",
+    "role": "توسعه‌دهنده فول استک",
+    "description": "من اپلیکیشن‌های وب و موبایل مدرن و مقیاس‌پذیر را با React، Next.js، React Native و TypeScript توسعه می‌دهم.",
+    "downloadResume": "دانلود رزومه",
+    "contactMe": "تماس با من"
   }
 }

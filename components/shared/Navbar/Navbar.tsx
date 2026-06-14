@@ -61,7 +61,6 @@ export default function Navbar() {
                 <Link href="/" className="font-bold text-xl tracking-tight text-foreground flex gap-2">
 
                     <Image
-
                         alt="logo - mahdi jeddi"
                         src={'/logo-manifest-192x192.png'}
                         width={32}

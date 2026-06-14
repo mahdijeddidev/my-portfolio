@@ -1,0 +1,72 @@
+import MyIcon from "@/components/shared/Icon/MyIcons";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
+
+interface HeroContentProps {
+    greetingBadge: string;
+    title: string;
+    name: string;
+    description: string;
+    downloadText: string;
+    contactText: string;
+    contactHref: string;
+    children?: React.ReactNode;
+}
+
+export default function HeroContent({
+    greetingBadge,
+    title,
+    name,
+    description,
+    downloadText,
+    contactText,
+    contactHref,
+    children,
+}: HeroContentProps) {
+    return (
+        <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-start space-y-6 max-w-xl">
+            {/* Greeting Badges */}
+            <span className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-accent text-accent-foreground border border-primary/20 animate-fade-in">
+                {greetingBadge} 👋
+            </span>
+
+            {/* Heading Content */}
+            <div className="space-y-3">
+                <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+                    {title}{" "}
+                    <span className="text-primary block lg:inline">{name}</span>
+                </h1>
+                <p className="text-lg text-muted-foreground leading-relaxed font-normal">
+                    {description}
+                </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 w-full">
+
+                <a
+                    href="/resume-persian.pdf"
+                    download="Mahdi-Jeddi-Resume.pdf"
+                    className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-primary/90 transition-all cursor-pointer active:scale-98"
+                >
+                    <MyIcon icon={ArrowDown01Icon} size={18} />
+                    {downloadText}
+                </a>
+
+                <a
+                    href={contactHref}
+                    className="inline-flex items-center font-semibold text-foreground px-6 py-3 rounded-lg border border-border bg-card hover:bg-muted transition-all cursor-pointer active:scale-98"
+                >
+                    {contactText}
+                </a>
+            </div>
+
+            {/* Separator & Social Slot */}
+            {children && (
+                <>
+                    <hr className="w-24 border-t border-border/60 my-2" />
+                    {children}
+                </>
+            )}
+        </div>
+    );
+}
