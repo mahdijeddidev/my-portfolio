@@ -1,4 +1,3 @@
-// app/[locale]/page.tsx
 "use client";
 
 import HeroContent from "@/components/shared/Hero/HeroContent";

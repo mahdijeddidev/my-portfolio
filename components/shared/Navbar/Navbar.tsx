@@ -58,7 +58,7 @@ export default function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="font-bold text-xl tracking-tight text-foreground flex gap-2">
+                <Link prefetch={false} href="/" className="font-bold text-xl tracking-tight text-foreground flex gap-2">
 
                     <Image
                         alt="logo - mahdi jeddi"
@@ -78,6 +78,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
                         <Link
+                            prefetch={false}
                             key={link.href}
                             href={link.href}
                             className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"

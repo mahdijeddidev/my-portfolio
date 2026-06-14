@@ -16,12 +16,15 @@
     "downloadResume": "Download Resume",
     "contactMe": "Get In Touch"
   },
-  "Home": {
-    "greeting": "👋 Hello, I'm",
-    "name": "Mahdi Jeddi",
-    "role": "Full Stack Developer",
-    "description": "I build modern, scalable web and mobile applications using React, Next.js, React Native and TypeScript.",
-    "downloadResume": "Download Resume",
-    "contactMe": "Contact Me"
+  "AboutPage": {
+    "badge": "About Me",
+    "title": "My Journey As A Builder",
+    "subtitle": "Bridging Design with Robust System Logic",
+    "story": "I design, architect, and deliver interactive digital platforms. Focused on high performance and clean architectures, I love converting complex UI designs into clean, high-speed applications.",
+    "statExpValue": "3+",
+    "statExpLabel": "Years Experience",
+    "statProjValue": "8+",
+    "statProjLabel": "Projects Delivered",
+    "actionText": "View My Skills"
   }
 }
