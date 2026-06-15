@@ -21,7 +21,7 @@ export default function ContactCard({ title, value, href, icon, badgeText }: Con
                 <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <MyIcon icon={icon} size={20} />
                 </div>
-                <div className="flex flex-col text-left" dir="ltr">
+                <div className="flex flex-col">
                     <span className="text-xs text-muted-foreground font-medium">{title}</span>
                     <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors mt-0.5">
                         {value}

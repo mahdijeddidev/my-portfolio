@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
 
+import PageTransition from "@/components/Layout/PageTransition";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import FloatingBackground from "@/components/shared/backGround/FloatingBackground";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -65,19 +67,23 @@ export default async function RootLayout({ children, params }: Props) {
       className={`${isPersian ? vazirmatn.variable : geistSans.variable} h-full`}
     >
       <body
-        className={
-          `
+        className={`
         min-h-screen bg-background text-foreground antialiased flex flex-col
         ${isPersian ? "font-[family-name:var(--font-vazirmatn)]" : "font-[family-name:var(--font-geist-sans)]"}
-        `
-        }
+        `  }
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider >
             <Navbar />
-            <main className="flex-1 pt-16 flex flex-col">
-              {children}
+
+            <FloatingBackground />
+
+            <main className="flex-1 pt-16 flex flex-col w-full">
+              <PageTransition>
+                {children}
+              </PageTransition>
             </main>
+
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

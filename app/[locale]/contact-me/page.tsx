@@ -12,13 +12,6 @@ export default function ContactMePage() {
     // Interactive Channels Setup
     const communicationChannels = [
         {
-            title: t("emailTitle"),
-            value: "mahdiproguni@gmail.com",
-            href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdiproguni@gmail.com",
-            icon: Email,
-            badgeText: t("fastestBadge"),
-        },
-        {
             title: t("phoneTitle"),
             value: "+98 922 507 4085",
             href: "tel:+989225074085",
@@ -26,10 +19,18 @@ export default function ContactMePage() {
             badgeText: t("fastestBadge"),
         },
         {
+            title: t("emailTitle"),
+            value: "mahdiproguni@gmail.com",
+            href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdiproguni@gmail.com",
+            icon: Email,
+            // badgeText: t("fastestBadge"),
+        },
+        {
             title: t("telegramTitle"),
             value: "@mehdijeddi",
             href: "https://t.me/mehdijeddi",
             icon: TelegramIcon,
+            badgeText: t("fastestBadge"),
         },
         {
             title: t("linkedinTitle"),
