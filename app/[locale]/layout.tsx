@@ -8,7 +8,7 @@ import FloatingBackground from "@/components/shared/backGround/FloatingBackgroun
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -29,29 +29,26 @@ const vazirmatn = localFont({
   weight: "100 900",
 });
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
   const { locale } = await params;
-  const isPersian = locale === "fa";
-  const t = await getMessages();
+
+  const t = await getTranslations({
+    locale,
+    namespace: "metadata",
+  });
 
   const baseUrl = "https://mahdijeddi.ir";
 
-  const siteTitle = isPersian
-    ? "مهدی جدی | توسعه‌دهنده فرانت‌اند و فول‌استک"
-    : "Mahdi Jeddi | Frontend & Full Stack Developer";
-
-  const siteDesc = isPersian
-    ? "نمونه کارها و پروژه‌های مهدی جدی، توسعه‌دهنده وب پیشرفته. متخصص در React ،Next.js و بهینه‌سازی کارایی برنامه."
-    : "Professional portfolio of Mahdi Jeddi, an advanced web developer specializing in React, Next.js, and high-performance frontend architecture.";
-
   return {
     title: {
-      template: `%s | ${isPersian ? "مهدی جدی" : "Mahdi Portfolio"}`,
-      default: siteTitle,
+      template: `%s | ${t("portfolioName")}`,
+      default: t("siteTitle"),
     },
-    description: siteDesc,
+    description: t("siteDescription"),
     metadataBase: new URL(baseUrl),
+
     alternates: {
       canonical: `${baseUrl}/${locale}`,
       languages: {
@@ -59,11 +56,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         fa: `${baseUrl}/fa`,
       },
     },
+
     openGraph: {
-      title: siteTitle,
-      description: siteDesc,
+      title: t("siteTitle"),
+      description: t("siteDescription"),
       url: `${baseUrl}/${locale}`,
-      siteName: "Mahdi Jeddi Portfolio",
+      siteName: t("siteName"),
       locale: locale === "fa" ? "fa_IR" : "en_US",
       type: "profile",
       firstName: "Mahdi",
@@ -71,19 +69,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       username: "mahdijeddy",
       images: [
         {
-          url: "/logo-manifest-512x512.png", // Reuses your existing high-res asset
+          url: "/logo-manifest-512x512.png",
           width: 512,
           height: 512,
-          alt: "Mahdi Jeddi Design Brand Signature Layout",
+          alt: t("openGraphImageAlt"),
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
-      title: siteTitle,
-      description: siteDesc,
+      title: t("siteTitle"),
+      description: t("siteDescription"),
       images: ["/logo-manifest-512x512.png"],
-    }
+    },
+    robots: { index: true, follow: true }
   };
 }
 

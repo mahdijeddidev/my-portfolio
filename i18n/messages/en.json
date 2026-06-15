@@ -89,5 +89,12 @@
     "goHome": "Go Home",
     "goBack": "Go Back",
     "support": "If this structural error keeps popping up, please clear your browser cache configurations."
+  },
+  "metadata": {
+    "siteTitle": "Mahdi Jeddi | Frontend & Full Stack Developer",
+    "siteDescription": "Professional portfolio of Mahdi Jeddi, an advanced web developer specializing in React, Next.js, and high-performance frontend architecture.",
+    "portfolioName": "Mahdi Portfolio",
+    "siteName": "Mahdi Jeddi Portfolio",
+    "openGraphImageAlt": "Mahdi Jeddi Design Brand Signature Layout"
   }
 }
