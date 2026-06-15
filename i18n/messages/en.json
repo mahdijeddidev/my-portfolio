@@ -44,5 +44,34 @@
     "catMobileDesc": "Building cross-platform mobile environments and native android compilation hooks.",
     "catOpsTitle": "DevOps & Optimization",
     "catOpsDesc": "Deploying apps to cloud servers and scaling SEO systems for optimal load speeds."
+  },
+  "ProjectsPage": {
+    "liveDemo": "Live Demo",
+    "badge": "Portfolio Case Studies",
+    "title": "Recent Architecture Builds",
+    "subtitle": "A collection of production applications highlighting decoupled states, real-time client streaming, and performance optimization.",
+    "actionText": "Let's build something together",
+
+    "proj1Title": "International Trade Single Window",
+    "proj1Desc": "(intsw) - International trade platform (government) for education and trade facilitation with proforma invoice facilities, glossary, and commercial contracts, along with introductions to exporting companies.",
+
+    "proj2Title": "Comprehensive trading system (ntsw)",
+    "proj2Desc": "The Comprehensive Trade System has been developed to facilitate commercial activities and monitor goods in the commercial chain. This system has tried to integrate and facilitate the provision of commercial services by creating a single portal. The present application has also been prepared with the aim of making it easier to use the services of the Comprehensive Trade System.",
+
+    "proj3Title": "Real-time Metrics Socket App",
+    "proj3Desc": "High throughput socket streaming system displaying live real-time network interactions using fully isolated Redux Saga channels."
+  },
+  "ContactPage": {
+    "badge": "Get In Touch",
+    "title": "Let's Start a Conversation",
+    "subtitle": "Looking for an advanced client-side developer, have a complex web optimization problem, or simply want to chat about engineering architectures? Reach out directly via any channel.",
+    "statusActive": "Available for full-time work & contracting opportunities",
+    "timezoneLabel": "Current Location & Timezone Context (tehran, Iran GMT+3:30)",
+    "fastestBadge": "Preferred",
+    "emailTitle": "Direct Email",
+    "telegramTitle": "Telegram Messenger",
+    "linkedinTitle": "Professional LinkedIn",
+    "githubTitle": "Open Source GitHub",
+    "phoneTitle": "Direct Voice / Mobile"
   }
 }
