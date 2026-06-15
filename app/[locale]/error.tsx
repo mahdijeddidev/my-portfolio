@@ -1,10 +1,14 @@
 'use client';
 
+import MyIcon from "@/components/shared/Icon/MyIcons";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { AlertCircleIcon } from "@hugeicons/core-free-icons";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function Error({
+export default function LocalizedError({
     error,
     reset,
 }: {
@@ -12,89 +16,92 @@ export default function Error({
     reset: () => void;
 }) {
     const router = useRouter();
+    const t = useTranslations("ErrorPage");
+    const locale = useLocale();
     const isDev = process.env.NODE_ENV === "development";
+    const isPersian = locale === "fa";
 
     useEffect(() => {
-        console.error("Error caught:", error);
+        console.error("Localized application error caught:", error);
     }, [error]);
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-destructive/5 to-background px-4">
+        <div
+            dir={isPersian ? "rtl" : "ltr"}
+            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] py-12 overflow-hidden"
+        >
             <div className="w-full max-w-md space-y-6">
+                {/* Immersive Ambient Flare */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-destructive/10 rounded-full filter blur-3xl -z-10 pointer-events-none" />
+
                 {/* Error Icon */}
                 <div className="flex justify-center">
-                    <div className="rounded-full bg-destructive/10 p-4">
-                        <svg
-                            className="h-8 w-8 text-destructive"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                        </svg>
+                    <div className="rounded-2xl bg-destructive/10 border border-destructive/20 p-4 text-destructive shadow-lg shadow-destructive/5 animate-pulse">
+                        <MyIcon icon={AlertCircleIcon} size={32} />
                     </div>
                 </div>
 
-                {/* Error Content */}
+                {/* Core Text Info */}
                 <div className="space-y-2 text-center">
-                    <h1 className="text-3xl font-bold">Oops! Something went wrong</h1>
-                    <p className="text-muted-foreground">
-                        We encountered an unexpected error. Please try again.
+                    <h1 className="text-2xl font-extrabold tracking-tight text-foreground">
+                        {t("title")}
+                    </h1>
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
+                        {t("description")}
                     </p>
                 </div>
 
-                {/* Error Details (Development Only) */}
+                {/* Developer Details Box (Only active during local development) */}
                 {isDev && (
-                    <div className="space-y-2 rounded-lg bg-muted p-4">
-                        <p className="text-sm font-semibold text-foreground">Error Details:</p>
-                        <p className="font-mono text-xs text-destructive">
-                            {error.message || "Unknown error"}
+                    <div className="space-y-2 rounded-xl bg-muted/60 border border-border/40 p-4 text-left" dir="ltr">
+                        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                            {t("details")}
+                        </p>
+                        <p className="font-mono text-xs font-semibold text-destructive break-all">
+                            {error.message || t("unknownError")}
                         </p>
                         {error.digest && (
-                            <p className="font-mono text-xs text-muted-foreground">
+                            <p className="font-mono text-[11px] text-muted-foreground">
                                 Digest: {error.digest}
                             </p>
                         )}
-                        <details className="mt-2">
-                            <summary className="cursor-pointer text-xs text-muted-foreground hover:text-foreground">
-                                Stack trace
+                        <details className="mt-2 group">
+                            <summary className="cursor-pointer text-xs text-muted-foreground hover:text-foreground select-none transition-colors font-medium">
+                                {t("stackTrace")}
                             </summary>
-                            <pre className="mt-2 overflow-auto rounded bg-background p-2 text-xs text-muted-foreground">
+                            <pre className="mt-2 overflow-auto rounded-lg bg-background/80 border border-border/30 p-3 font-mono text-[11px] text-muted-foreground max-h-48 whitespace-pre-wrap">
                                 {error.stack}
                             </pre>
                         </details>
                     </div>
                 )}
 
-                {/* Action Buttons */}
-                <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                    <Button onClick={reset} className="sm:flex-1">
-                        Try Again
+                {/* Action Controls */}
+                <div className="flex flex-col gap-2 sm:flex-row sm:justify-center pt-2">
+                    <Button onClick={reset} className="sm:flex-1 h-10 font-semibold shadow-md shadow-primary/10 cursor-pointer">
+                        {t("tryAgain")}
                     </Button>
                     <Button
                         variant="outline"
-                        onClick={() => router.push("/")}
-                        className="sm:flex-1"
+                        asChild
+                        className="sm:flex-1 h-10 font-semibold bg-muted/40 cursor-pointer"
                     >
-                        Go Home
+                        <Link href="/">
+                            {t("goHome")}
+                        </Link>
                     </Button>
                     <Button
                         variant="ghost"
                         onClick={() => router.back()}
-                        className="sm:flex-1"
+                        className="sm:flex-1 h-10 font-semibold text-muted-foreground cursor-pointer"
                     >
-                        Go Back
+                        {t("goBack")}
                     </Button>
                 </div>
 
-                {/* Support Message */}
-                <div className="rounded-lg bg-muted/50 p-4 text-center text-sm text-muted-foreground">
-                    <p>If the problem persists, please contact support or try clearing your cache.</p>
+                {/* Background Support Card */}
+                <div className="rounded-xl bg-muted/40 border border-border/20 p-4 text-center text-xs text-muted-foreground leading-relaxed">
+                    <p>{t("support")}</p>
                 </div>
             </div>
         </div>

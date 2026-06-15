@@ -73,5 +73,21 @@
     "linkedinTitle": "Professional LinkedIn",
     "githubTitle": "Open Source GitHub",
     "phoneTitle": "Direct Voice / Mobile"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "The cosmic link you followed has broken, or the page route has relocated somewhere else inside the stack architecture.",
+    "buttonText": "Return to Dashboard"
+  },
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "description": "We encountered an unexpected layout or system exception. Please try refreshing the runtime engine.",
+    "details": "Error Details:",
+    "unknownError": "Unknown application error code",
+    "stackTrace": "Click to show technical stack trace log",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "support": "If this structural error keeps popping up, please clear your browser cache configurations."
   }
 }

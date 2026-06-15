@@ -29,23 +29,63 @@ const vazirmatn = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Mahdi Portfolio",
-    default: "Mahdi - Full Stack Developer Portfolio",
-  },
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
-  description: "Professional portfolio showcasing web development projects",
+  const { locale } = await params;
+  const isPersian = locale === "fa";
+  const t = await getMessages();
 
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  const baseUrl = "https://mahdijeddi.ir";
+
+  const siteTitle = isPersian
+    ? "مهدی جدی | توسعه‌دهنده فرانت‌اند و فول‌استک"
+    : "Mahdi Jeddi | Frontend & Full Stack Developer";
+
+  const siteDesc = isPersian
+    ? "نمونه کارها و پروژه‌های مهدی جدی، توسعه‌دهنده وب پیشرفته. متخصص در React ،Next.js و بهینه‌سازی کارایی برنامه."
+    : "Professional portfolio of Mahdi Jeddi, an advanced web developer specializing in React, Next.js, and high-performance frontend architecture.";
+
+  return {
+    title: {
+      template: `%s | ${isPersian ? "مهدی جدی" : "Mahdi Portfolio"}`,
+      default: siteTitle,
+    },
+    description: siteDesc,
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+      languages: {
+        en: `${baseUrl}/en`,
+        fa: `${baseUrl}/fa`,
+      },
+    },
+    openGraph: {
+      title: siteTitle,
+      description: siteDesc,
+      url: `${baseUrl}/${locale}`,
+      siteName: "Mahdi Jeddi Portfolio",
+      locale: locale === "fa" ? "fa_IR" : "en_US",
+      type: "profile",
+      firstName: "Mahdi",
+      lastName: "Jeddi",
+      username: "mahdijeddy",
+      images: [
+        {
+          url: "/logo-manifest-512x512.png", // Reuses your existing high-res asset
+          width: 512,
+          height: 512,
+          alt: "Mahdi Jeddi Design Brand Signature Layout",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteTitle,
+      description: siteDesc,
+      images: ["/logo-manifest-512x512.png"],
+    }
+  };
+}
 
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;

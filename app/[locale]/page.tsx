@@ -29,6 +29,7 @@ export default function Home() {
       {/* Main Grid Container */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-items-center">
 
+
         {/* Visual Side */}
         <HeroImage src="/photo-me.png" alt="Mahdi jeddi Profile Picture" />
 
