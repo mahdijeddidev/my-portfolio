@@ -70,7 +70,8 @@ export default function SkillsPage() {
     ];
 
     return (
-        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-10 lg:py-4 overflow-hidden">
+        // <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-10 lg:py-4 overflow-hidden">
+        <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-start pt-24 pb-12 overflow-hidden">
             {/* Background */}
             <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl -z-10 pointer-events-none" />
 
@@ -94,6 +95,6 @@ export default function SkillsPage() {
                     />
                 ))}
             </div>
-        </section>
+        </section >
     );
 }

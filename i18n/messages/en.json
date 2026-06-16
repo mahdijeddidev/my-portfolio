@@ -6,7 +6,8 @@
     "skills": "My Skills",
     "projects": "My Projects",
     "contact": "Contact Me",
-    "heroText": "Welcome"
+    "heroText": "Welcome",
+    "themeStateTitle": "Theme"
   },
   "HomePage": {
     "greetingBadge": "Welcome to my space",

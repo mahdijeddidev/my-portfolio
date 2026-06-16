@@ -1,4 +1,3 @@
-// components/Layout/PageTransition.tsx
 "use client";
 
 import { usePathname } from "@/i18n/navigation";
@@ -14,21 +13,42 @@ export default function PageTransition({ children }: PageTransitionProps) {
     return (
         <motion.div
             key={pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-                duration: 0.25,
-                ease: "easeInOut",
+            initial={{
+                opacity: 0,
+                filter: "blur(6px)",
             }}
-            style={{ willChange: "opacity" }}
-            className="w-full flex-1 flex flex-col"
+            animate={{
+                opacity: 1,
+                filter: "blur(0px)",
+            }}
+            exit={{
+                opacity: 0,
+                filter: "blur(6px)",
+            }}
+            transition={{
+                duration: 0.3,
+            }}
         >
             {children}
         </motion.div>
+
     );
 }
 
+// <motion.div
+//     key={pathname}
+//     initial={{ opacity: 0 }}
+//     animate={{ opacity: 1 }}
+//     exit={{ opacity: 0 }}
+//     transition={{
+//         duration: 0.25,
+//         ease: "easeInOut",
+//     }}
+//     style={{ willChange: "opacity" }}
+//     className="w-full flex-1 flex flex-col"
+// >
+//     {children}
+// </motion.div>
 
 // "use client";
 

@@ -6,7 +6,8 @@
     "skills": "مهارت‌های من",
     "projects": "پروژه‌های من",
     "contact": "تماس با من",
-    "heroText": "خوش آمدید"
+    "heroText": "خوش آمدید",
+    "themeStateTitle": "تم"
   },
   "HomePage": {
     "greetingBadge": "به دنیای من خوش آمدید",

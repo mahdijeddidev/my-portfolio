@@ -1,17 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-// Import usePathname from your custom i18n file to match localized routes
 import { Link, usePathname } from "@/i18n/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
-
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
-import { Cancel01Icon, MenuCollapseFreeIcons, Moon, Sun } from "@hugeicons/core-free-icons";
+import { Cancel01Icon, MenuCollapseFreeIcons } from "@hugeicons/core-free-icons"; // Re-imported icons
 import Image from "next/image";
-import MyIcon from "../Icon/MyIcons";
+import MyIcon from "../Icon/MyIcons"; // Re-imported MyIcon
 import LanguageSwitcher from "../locale-switcher/LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
     // -- states | hooks
@@ -19,9 +18,8 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
 
     const locale = useLocale();
-    const pathname = usePathname(); // Tracks active page status
+    const pathname = usePathname();
     const t = useTranslations("Navbar");
-    const { theme, setTheme } = useTheme();
 
     // -- Mount
     useEffect(() => {
@@ -75,7 +73,6 @@ export default function Navbar() {
                 {/* Desktop Navigation Links */}
                 <div className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => {
-                        // Check if current route matches link target path
                         const isActive = pathname === link.href;
 
                         return (
@@ -84,39 +81,32 @@ export default function Navbar() {
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "transition-colors font-medium text-sm hover:text-foreground",
-                                    isActive
-                                        ? "text-primary font-semibold underline underline-offset-8 decoration-2 decoration-primary "
-                                        : "text-muted-foreground"
+                                    "relative transition-colors font-medium text-sm py-2 pb-2.5 hover:text-foreground",
+                                    isActive ? "text-primary font-semibold" : "text-muted-foreground"
                                 )}
                             >
                                 {link.name}
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="activeNavbarUnderline"
+                                        className="absolute bottom-0 inset-x-0 h-0.5 bg-primary rounded-full"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    />
+                                )}
                             </Link>
                         );
                     })}
                 </div>
 
-                {/* Action Items (Language Switcher, Dark Mode, Mobile Menu Button) */}
+                {/* Action Items */}
                 <div className="flex items-center gap-4">
                     <LanguageSwitcher />
+                    <ThemeToggle />
 
-                    {/* Theme Toggle Button */}
-                    <button
-                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        className="p-2 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                        aria-label="Toggle Theme"
-                    >
-                        {theme === "dark" ? (
-                            <MyIcon icon={Sun} size={20} />
-                        ) : (
-                            <MyIcon icon={Moon} size={20} />
-                        )}
-                    </button>
-
-                    {/* Mobile Menu Toggle Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 rounded-md hover:bg-muted text-muted-foreground cursor-pointer"
+                        className="md:hidden p-2 rounded-md hover:bg-muted text-muted-foreground transition-colors cursor-pointer"
+                        aria-label="Toggle Menu"
                     >
                         {isOpen ? (
                             <MyIcon icon={Cancel01Icon} size={24} />
@@ -127,30 +117,38 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Dropdown Menu Drawer */}
-            {isOpen && (
-                <div className="md:hidden bg-background border-b border-border px-4 pt-2 pb-4 space-y-1">
-                    {navLinks.map((link) => {
-                        const isActive = pathname === link.href;
+            {/* Mobile Dropdown Menu Drawer with clean transition performance */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="md:hidden bg-background border-b border-border px-4 pt-2 pb-4 space-y-1 overflow-hidden"
+                    >
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href;
 
-                        return (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className={cn(
-                                    "block px-3 py-2 rounded-md text-base font-medium transition-colors",
-                                    isActive
-                                        ? "text-primary bg-primary/10 font-semibold"
-                                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                                )}
-                            >
-                                {link.name}
-                            </Link>
-                        );
-                    })}
-                </div>
-            )}
+                            return (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className={cn(
+                                        "block px-3 py-2 rounded-md text-base font-medium transition-colors",
+                                        isActive
+                                            ? "text-primary bg-primary/10 font-semibold"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                    )}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 }
