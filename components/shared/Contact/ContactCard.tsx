@@ -37,6 +37,7 @@ export default function ContactCard({ title, value, href, icon, badgeText }: Con
                 </motion.div>
 
                 <div className="flex flex-col">
+
                     <span className="text-xs text-muted-foreground font-medium">{title}</span>
                     <bdi
                         className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors mt-0.5 ">
@@ -45,6 +46,8 @@ export default function ContactCard({ title, value, href, icon, badgeText }: Con
                 </div>
 
             </div>
+
+
 
             {badgeText && (
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-accent text-accent-foreground border border-primary/10">

@@ -3,6 +3,7 @@
 
 import AvailabilityPanel from "@/components/shared/Contact/AvailabilityPanel";
 import ContactCard from "@/components/shared/Contact/ContactCard";
+import HandMarker from "@/components/shared/Text/HandMarker";
 import { CallIcon, Email, GithubIcon, LinkedinIcon, TelegramIcon } from "@hugeicons/core-free-icons";
 import { useTranslations } from "next-intl";
 
@@ -59,7 +60,10 @@ export default function ContactMePage() {
                 <AvailabilityPanel
                     badge={t("badge")}
                     title={t("title")}
-                    subtitle={t("subtitle")}
+                    // subtitle={t.rich("subtitle" , ()=>{ return <HandMarker>{t("advancedClientSideDeveloper")}</HandMarker> })}
+                    subtitle={t.rich("subtitle", {
+                        marker: (chunks) => <HandMarker>{chunks}</HandMarker>
+                    })}
                     statusText={t("statusActive")}
                     timezoneLabel={t("timezoneLabel")}
                 />

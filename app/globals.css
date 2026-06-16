@@ -15,7 +15,11 @@
   }
 
   html[lang="en"] {
-    font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+    font-family:
+      var(--font-geist-sans),
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   html[lang="fa"] {
@@ -51,7 +55,7 @@
   --input: 0 0% 95%;
   --ring: 210 100% 50%;
   --radius: 0.75rem;
-  
+
   /* Custom colors */
   --color-hover-card-bg: 210 100% 30%;
   --color-hover-card-border: 270 100% 60%;
@@ -104,16 +108,27 @@
   --color-card-foreground: hsl(var(--card-foreground));
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  
+
   /* Custom colors */
   --color-hover-card-bg: hsl(var(--color-hover-card-bg));
   --color-hover-card-border: hsl(var(--color-hover-card-border));
   --color-dark-layer-1: hsl(var(--color-dark-layer-1));
   --color-dark-layer-2: hsl(var(--color-dark-layer-2));
   --color-dark-layer-3: hsl(var(--color-dark-layer-3));
-  
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
+}
+
+@keyframes markerDraw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
 }

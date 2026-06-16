@@ -29,6 +29,10 @@ const vazirmatn = localFont({
   weight: "100 900",
 });
 
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'fa' }];
+}
+
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {

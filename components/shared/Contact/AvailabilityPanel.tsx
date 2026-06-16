@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface AvailabilityPanelProps {
     badge: string;
     title: string;
-    subtitle: string;
+    subtitle: ReactNode;
     statusText: string;
     timezoneLabel: string;
 }

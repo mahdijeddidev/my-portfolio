@@ -33,12 +33,14 @@ export default function AboutContent({
                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
                     {title}
                 </h1>
+
                 <h2 className="text-lg font-semibold text-primary">
                     {subtitle}
                 </h2>
                 <p className="text-base text-muted-foreground leading-relaxed font-normal">
                     {story}
                 </p>
+
             </div>
 
             {children}

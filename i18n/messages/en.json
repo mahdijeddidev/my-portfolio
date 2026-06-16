@@ -15,7 +15,8 @@
     "name": "Mahdi Jeddi",
     "description": "A Full Stack Developer specializing in building scalable web architectures and fluid application layouts.",
     "downloadResume": "Download Resume",
-    "contactMe": "Get In Touch"
+    "contactMe": "Get In Touch",
+    "more": "More ..."
   },
   "AboutPage": {
     "badge": "About Me",
@@ -65,7 +66,7 @@
   "ContactPage": {
     "badge": "Get In Touch",
     "title": "Let's Start a Conversation",
-    "subtitle": "Looking for an advanced client-side developer, have a complex web optimization problem, or simply want to chat about engineering architectures? Reach out directly via any channel.",
+    "subtitle": "Looking for an <marker>advanced client-side developer</marker>, have a complex <marker>web optimization</marker> problem, or simply want to chat about <marker>software architecture</marker>? Reach out directly via any channel.",
     "statusActive": "Available for full-time work & contracting opportunities",
     "timezoneLabel": "Current Location & Timezone Context (te)",
     "fastestBadge": "Preferred",

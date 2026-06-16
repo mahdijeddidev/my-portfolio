@@ -34,15 +34,7 @@ export default function Home() {
         <HeroImage src="/photo-me.png" alt="Mahdi jeddi Profile Picture" />
 
         {/* Text and Actions Side */}
-        <HeroContent
-          greetingBadge={t("greetingBadge")}
-          title={t("title")}
-          name={t("name")}
-          description={t("description")}
-          downloadText={t("downloadResume")}
-          contactText={t("contactMe")}
-          contactHref={`/${locale}/contact-me`}
-        >
+        <HeroContent >
           <SocialLinks links={socials} />
         </HeroContent>
 

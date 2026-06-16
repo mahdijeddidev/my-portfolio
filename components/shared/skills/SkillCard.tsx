@@ -1,3 +1,4 @@
+import HandMarkerAround from "../Text/HandMarkerAround";
 
 interface SkillTag {
     name: string;
@@ -14,9 +15,12 @@ export default function SkillCard({ title, description, tags }: SkillCardProps) 
     return (
         <div className="p-5 rounded-xl bg-card/60 border border-border/40 backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xl group">
             <div>
-                <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                    {title}
-                </h3>
+                <HandMarkerAround>
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                        {title}
+                    </h3>
+                </HandMarkerAround>
+
                 <p className="text-xs text-muted-foreground mt-1 mb-4 leading-relaxed">
                     {description}
                 </p>
