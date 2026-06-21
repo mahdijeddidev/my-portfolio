@@ -16,7 +16,8 @@
     "description": "A Full Stack Developer specializing in building scalable web architectures and fluid application layouts.",
     "downloadResume": "Download Resume",
     "contactMe": "Get In Touch",
-    "more": "More ..."
+    "more": "More ...",
+    "seoSubtitle": "Frontend & Next.js Developer"
   },
   "AboutPage": {
     "badge": "About Me",
@@ -93,10 +94,21 @@
     "support": "If this structural error keeps popping up, please clear your browser cache configurations."
   },
   "metadata": {
-    "siteTitle": "Mahdi Jeddi | Frontend & Full Stack Developer",
-    "siteDescription": "Professional portfolio of Mahdi Jeddi, an advanced web developer specializing in React, Next.js, and high-performance frontend architecture.",
-    "portfolioName": "Mahdi Portfolio",
+    "siteTitle": "Mahdi Jeddi | React & Next.js Developer",
+    "siteDescription": "Mahdi Jeddi is a Frontend and Full Stack Developer specializing in React, Next.js, TypeScript, React Native, and modern web application development.",
+    "portfolioName": "Mahdi Jeddi",
     "siteName": "Mahdi Jeddi Portfolio",
-    "openGraphImageAlt": "Mahdi Jeddi Design Brand Signature Layout"
+    "openGraphImageAlt": "Mahdi Jeddi - React and Next.js Developer Portfolio",
+    "home": {
+      "title": "Mahdi Jeddi | React & Next.js Developer",
+      "description": "Professional portfolio of Mahdi Jeddi. Discover modern web applications, production-ready frontend architectures, and clean engineering solutions built with React, Next.js, and TypeScript.",
+      "openGraphImageAlt": "Mahdi Jeddi Portfolio - Frontend Engineering Hub",
+      "openGraphSiteName": "Mahdi Jeddi Portfolio"
+    },
+    "contact": {
+      "title": "Contact Me",
+      "description": "Get in touch with Mahdi Jeddi for freelance work, remote full-stack positions, or engineering collaborations.",
+      "openGraphImageAlt": "Contact Mahdi Jeddi - React & Next.js Developer"
+    }
   }
 }

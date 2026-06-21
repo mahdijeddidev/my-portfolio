@@ -4,11 +4,12 @@ import localFont from "next/font/local";
 
 import PageTransition from "@/components/Layout/PageTransition";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import StructuredData from "@/components/SEO/StructuredData";
 import FloatingBackground from "@/components/shared/backGround/FloatingBackground";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -33,63 +34,14 @@ export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'fa' }];
 }
 
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
-  const { locale } = await params;
-
-  const t = await getTranslations({
-    locale,
-    namespace: "metadata",
-  });
-
-  const baseUrl = "https://mahdijeddi.ir";
-
-  return {
-    title: {
-      template: `%s | ${t("portfolioName")}`,
-      default: t("siteTitle"),
-    },
-    description: t("siteDescription"),
-    metadataBase: new URL(baseUrl),
-
-    alternates: {
-      canonical: `${baseUrl}/${locale}`,
-      languages: {
-        en: `${baseUrl}/en`,
-        fa: `${baseUrl}/fa`,
-      },
-    },
-
-    openGraph: {
-      title: t("siteTitle"),
-      description: t("siteDescription"),
-      url: `${baseUrl}/${locale}`,
-      siteName: t("siteName"),
-      locale: locale === "fa" ? "fa_IR" : "en_US",
-      type: "profile",
-      firstName: "Mahdi",
-      lastName: "Jeddi",
-      username: "mahdijeddy",
-      images: [
-        {
-          url: "/logo-manifest-512x512.png",
-          width: 512,
-          height: 512,
-          alt: t("openGraphImageAlt"),
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: t("siteTitle"),
-      description: t("siteDescription"),
-      images: ["/logo-manifest-512x512.png"],
-    },
-    robots: { index: true, follow: true }
-  };
+export const metadata: Metadata = {
+  metadataBase: new URL("https://mahdijeddi.ir"),
+  robots: {
+    index: true,
+    follow: true,
+  }
 }
+
 
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
@@ -116,6 +68,8 @@ export default async function RootLayout({ children, params }: Props) {
         ${isPersian ? "font-[family-name:var(--font-vazirmatn)]" : "font-[family-name:var(--font-geist-sans)]"}
         `  }
       >
+        <StructuredData locale={locale} />
+
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider >
             <Navbar />
@@ -130,6 +84,7 @@ export default async function RootLayout({ children, params }: Props) {
 
           </ThemeProvider>
         </NextIntlClientProvider>
+
       </body>
     </html>
   );

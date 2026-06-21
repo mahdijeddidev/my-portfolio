@@ -1,27 +1,83 @@
-// app/[locale]/contact-me/page.tsx
-"use client";
-
+import ContactStructuredData from "@/components/SEO/ContactStructuredData";
 import AvailabilityPanel from "@/components/shared/Contact/AvailabilityPanel";
 import ContactCard from "@/components/shared/Contact/ContactCard";
 import HandMarker from "@/components/shared/Text/HandMarker";
 import { CallIcon, Email, GithubIcon, LinkedinIcon, TelegramIcon } from "@hugeicons/core-free-icons";
-import { useTranslations } from "next-intl";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export default function ContactMePage() {
-    const t = useTranslations("ContactPage");
+export const revalidate = 86400;
+
+type Props = {
+    params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "metadata.contact" });
+
+    const baseUrl = 'https://mahdijeddi.ir'
+    const url = `${baseUrl}/${locale}`;
+
+    return {
+        title: t('title'),
+        description: t("description"),
+        alternates: {
+            canonical: url,
+            languages: {
+                en: `${baseUrl}/en`,
+                fa: `${baseUrl}/fa`,
+            },
+        },
+        openGraph: {
+            title: t("title"),
+            description: t("description"),
+            url,
+            siteName: "Mahdi Jeddi",
+            type: "website",
+            locale: locale === "fa" ? "fa_IR" : "en_US",
+            images: [
+                {
+                    url: "/logo-manifest-512x512.png",
+                    width: 512,
+                    height: 512,
+                    alt: t("openGraphImageAlt"),
+                },
+            ],
+        },
+
+        twitter: {
+            card: "summary_large_image",
+            title: t("title"),
+            description: t("description"),
+            images: ["/logo-manifest-512x512.png"],
+        },
+    };
+}
+
+async function ContactMePage({ params }: Props) {
+
+    const { locale } = await params
+    const t = await getTranslations({
+        locale,
+        namespace: "ContactPage",
+    });
 
     // Interactive Channels Setup
+    const phone = "+98 922 507 4085";
+    const email = "mahdiproguni@gmail.com";
     const communicationChannels = [
         {
             title: t("phoneTitle"),
-            value: "+98 922 507 4085",
+            value: phone,
             href: "tel:+989225074085",
             icon: CallIcon,
             badgeText: t("fastestBadge"),
         },
         {
             title: t("emailTitle"),
-            value: "mahdiproguni@gmail.com",
+            value: email,
             href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdiproguni@gmail.com",
             icon: Email,
             // badgeText: t("fastestBadge"),
@@ -49,6 +105,8 @@ export default function ContactMePage() {
 
     return (
         <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center lg:h-[calc(100vh-4rem)] py-8 lg:py-0 overflow-hidden">
+
+            <ContactStructuredData email={email} phone={phone} />
 
             {/* Background Decorative Radial Mask */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl -z-10 pointer-events-none" />
@@ -86,3 +144,5 @@ export default function ContactMePage() {
         </section>
     );
 }
+
+export default ContactMePage

@@ -1,3 +1,4 @@
+"use client"
 import MyIcon from "@/components/shared/Icon/MyIcons";
 import { motion } from "framer-motion";
 import { ComponentType } from "react";

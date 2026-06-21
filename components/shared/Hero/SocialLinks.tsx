@@ -24,6 +24,7 @@ export default function SocialLinks({ links }: SocialLinksProps) {
                         target={isWebUrl ? "_blank" : '_self'}
                         rel={isWebUrl ? "noopener noreferrer" : undefined}
                         title={social.name}
+                        aria-label={social.name}
                         className="text-2xl text-muted-foreground hover:text-primary hover:scale-110 transition-all duration-200"
                     >
                         {social.icon}

@@ -1,17 +1,73 @@
-"use client";
+
 
 import HeroContent from "@/components/shared/Hero/HeroContent";
 import HeroImage from "@/components/shared/Hero/HeroImage";
 import SocialLinks from "@/components/shared/Hero/SocialLinks";
 import MyIcon from "@/components/shared/Icon/MyIcons";
 import { Email, GithubIcon, LinkedinIcon, TelegramIcon } from "@hugeicons/core-free-icons";
-import { useLocale, useTranslations } from "next-intl";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
-  // -- states | Hooks
-  const t = useTranslations("HomePage");
-  const locale = useLocale();
+export const revalidate = 86400;
 
+type Props = {
+  params: Promise<{ locale: string }>
+}
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+
+  const t = await getTranslations({
+    locale,
+    namespace: "metadata.home",
+  });
+
+  const baseUrl = 'https://mahdijeddi.ir'
+  const url = `${baseUrl}/${locale}`;
+
+  return {
+    title: {
+      absolute: t('title')
+    },
+    description: t("description"),
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${baseUrl}/en`,
+        fa: `${baseUrl}/fa`,
+        "x-default": `${baseUrl}/en`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url,
+      siteName: t('openGraphSiteName'),
+      type: "website",
+      locale: locale === "fa" ? "fa_IR" : "en_US",
+      images: [
+        {
+          url: "/logo-manifest-512x512.png",
+          width: 512,
+          height: 512,
+          alt: t("openGraphImageAlt"),
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: ["/logo-manifest-512x512.png"],
+    },
+  };
+}
+
+async function HomePage({ params }: Props) {
+
+  const { locale } = await params
   //  -- UI
   const socials = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/mahdi-jeddi/", icon: <MyIcon icon={LinkedinIcon} size={24} /> },
@@ -29,12 +85,11 @@ export default function Home() {
       {/* Main Grid Container */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-items-center">
 
-
         {/* Visual Side */}
-        <HeroImage src="/photo-me.png" alt="Mahdi jeddi Profile Picture" />
+        <HeroImage src="/photo-me.png" alt="Mahdi Jeddi - Frontend Developer" />
 
         {/* Text and Actions Side */}
-        <HeroContent >
+        <HeroContent locale={locale}>
           <SocialLinks links={socials} />
         </HeroContent>
 
@@ -42,3 +97,5 @@ export default function Home() {
     </section>
   );
 }
+
+export default HomePage

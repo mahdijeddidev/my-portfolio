@@ -1,19 +1,20 @@
 import MyIcon from "@/components/shared/Icon/MyIcons";
 import { Link } from "@/i18n/navigation";
 import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import HandMarker from "../Text/HandMarker";
 
 interface HeroContentProps {
     children?: React.ReactNode;
+    locale: string
 }
 
-export default function HeroContent({
+async function HeroContent({
     children,
+    locale
 }: HeroContentProps) {
 
-    const t = useTranslations('HomePage')
-    const locale = useLocale();
+    const t = await getTranslations({ locale, namespace: 'HomePage' });
 
     return (
         <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-start space-y-6 max-w-xl">
@@ -27,6 +28,7 @@ export default function HeroContent({
                 <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
                     {t('title')} {' '}
                     <span className="text-primary block lg:inline">{t("name")}</span>
+                    <span className="sr-only"> - {t('seoSubtitle')}</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed font-normal">
                     {t('description')}
@@ -72,3 +74,5 @@ export default function HeroContent({
         </div>
     );
 }
+
+export default HeroContent
