@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = 'https://mahdijeddi.ir'
   const url = `${baseUrl}/${locale}`;
+  const ogImageUrl = `${baseUrl}/og-en.png`
 
   return {
     title: {
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: locale === "fa" ? "fa_IR" : "en_US",
       images: [
         {
-          url: "/logo-manifest-512x512.png",
+          url: ogImageUrl,
           width: 512,
           height: 512,
           alt: t("openGraphImageAlt"),
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/logo-manifest-512x512.png"],
+      images: [ogImageUrl],
     },
   };
 }

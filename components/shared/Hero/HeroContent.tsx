@@ -15,6 +15,7 @@ async function HeroContent({
 }: HeroContentProps) {
 
     const t = await getTranslations({ locale, namespace: 'HomePage' });
+    const isPersian = locale === "fa";
 
     return (
         <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-start space-y-6 max-w-xl">
@@ -26,8 +27,19 @@ async function HeroContent({
             {/* Heading Content */}
             <div className="space-y-3">
                 <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-                    {t('title')} {' '}
-                    <span className="text-primary block lg:inline">{t("name")}</span>
+                    {isPersian ? (
+                        // Persian: Put name first
+                        <>
+                            <span className="text-primary block lg:inline">{t("name")}</span>
+                            {' '}{t('title')}
+                        </>
+                    ) : (
+                        // English: Keep as is
+                        <>
+                            {t('title')} {' '}
+                            <span className="text-primary block lg:inline">{t("name")}</span>
+                        </>
+                    )}
                     <span className="sr-only"> - {t('seoSubtitle')}</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed font-normal">
