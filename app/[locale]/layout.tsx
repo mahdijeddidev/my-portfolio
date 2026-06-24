@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/next";
+
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
@@ -12,6 +12,9 @@ import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 type Props = {
   children: React.ReactNode;
@@ -86,6 +89,7 @@ export default async function RootLayout({ children, params }: Props) {
           </ThemeProvider>
         </NextIntlClientProvider>
         <Analytics />
+        <SpeedInsights />
 
       </body>
     </html>

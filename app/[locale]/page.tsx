@@ -50,8 +50,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: ogImageUrl,
-          width: 512,
-          height: 512,
+          width: 1200,
+          height: 630,
           alt: t("openGraphImageAlt"),
         },
       ],
