@@ -1,14 +1,74 @@
-// app/[locale]/about-me/page.tsx
-"use client";
 
+import AboutStructuredData from "@/components/SEO/AboutStructuredData";
 import AboutContent from "@/components/shared/About/AboutContent";
 import AboutStats from "@/components/shared/About/AboutStats";
 import CodeCard from "@/components/shared/About/CodeCard";
-import { useLocale, useTranslations } from "next-intl";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export default function AboutMePage() {
-    const t = useTranslations("AboutPage");
-    const locale = useLocale();
+type Props = {
+    params: Promise<{
+        locale: string;
+    }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "metadata.about" });
+
+    const baseUrl = 'https://mahdijeddi.ir'
+    const url = `${baseUrl}/${locale}/about-me`;
+
+    const ogImageUrl = `${baseUrl}/og-en.png`
+
+    return {
+        title: t('title'),
+        description: t("description"),
+        alternates: {
+            canonical: url,
+            languages: {
+                en: `${baseUrl}/en/about-me`,
+                fa: `${baseUrl}/fa/about-me`,
+                "x-default": `${baseUrl}/en/about-me`,
+            }
+        },
+        openGraph: {
+            title: t("title"),
+            description: t("description"),
+            url,
+            siteName: "Mahdi Jeddi",
+            type: "profile",
+            locale: locale === "fa" ? "fa_IR" : "en_US",
+            images: [
+                {
+                    url: ogImageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: t("openGraphImageAlt"),
+                },
+            ],
+        },
+
+        twitter: {
+            card: "summary_large_image",
+            title: t("title"),
+            description: t("description"),
+            images: [ogImageUrl],
+        },
+    };
+}
+
+async function AboutMePage({ params }: Props) {
+
+    const { locale } = await params
+    const t = await getTranslations({
+        locale,
+        namespace: "AboutPage",
+    });
+
+    const phone = "+98 922 507 4085";
+    const email = "mahdijeddidev@gmail.com";
 
     // Dashboard Stats Config
     const metrics = [
@@ -41,6 +101,13 @@ export default function AboutMePage() {
                 <CodeCard title="mahdi.config.js" />
 
             </div>
+
+            <AboutStructuredData
+                email={email} phone={phone} locale={locale}
+            />
+
         </section>
     );
 }
+
+export default AboutMePage

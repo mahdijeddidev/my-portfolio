@@ -72,9 +72,9 @@ async function HomePage({ params }: Props) {
   //  -- UI
   const socials = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/mahdi-jeddi/", icon: <MyIcon icon={LinkedinIcon} size={24} /> },
-    { name: "GitHub", href: "https://github.com/mahdijeddy", icon: <MyIcon icon={GithubIcon} size={24} /> },
-    { name: "Telegram", href: "https://t.me/mehdijeddi", icon: <MyIcon icon={TelegramIcon} size={24} /> },
-    { name: "Email", href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdiproguni@gmail.com", icon: <MyIcon icon={Email} size={24} /> },
+    { name: "GitHub", href: "https://github.com/mahdijeddidev", icon: <MyIcon icon={GithubIcon} size={24} /> },
+    { name: "Telegram", href: "https://t.me/mahdijeddidev", icon: <MyIcon icon={TelegramIcon} size={24} /> },
+    { name: "Email", href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdijeddidev@gmail.com", icon: <MyIcon icon={Email} size={24} /> },
   ];
 
   return (
@@ -87,7 +87,7 @@ async function HomePage({ params }: Props) {
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-items-center">
 
         {/* Visual Side */}
-        <HeroImage src="/photo-me.png" alt="Mahdi Jeddi - Frontend Developer" />
+        <HeroImage src="/photo-me.png" alt="Mahdi Jeddi, Frontend Developer specializing in React and Next.js" />
 
         {/* Text and Actions Side */}
         <HeroContent locale={locale}>

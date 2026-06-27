@@ -4,7 +4,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Cancel01Icon, MenuCollapseFreeIcons } from "@hugeicons/core-free-icons"; // Re-imported icons
 import Image from "next/image";
@@ -39,15 +39,18 @@ export default function Navbar() {
         { name: t("contact"), href: "/contact-me" },
     ];
 
-    const today = new Intl.DateTimeFormat(locale, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(new Date());
+    const today = useMemo(() => {
+        return new Intl.DateTimeFormat(locale, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        }).format(new Date());
+    }, [locale]);
 
     return (
         <nav
+            aria-label="Primary navigation"
             className={cn(
                 "fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md border-b",
                 scrolled
@@ -59,7 +62,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link prefetch={false} href="/" className="font-bold text-xl tracking-tight text-foreground flex gap-2">
                     <Image
-                        alt="logo - mahdi jeddi"
+                        alt="Mahdi Jeddi logo"
                         src={'/logo-manifest-192x192.png'}
                         width={32}
                         height={32}
@@ -80,6 +83,7 @@ export default function Navbar() {
                                 prefetch={false}
                                 key={link.href}
                                 href={link.href}
+                                aria-current={isActive ? "page" : undefined}
                                 className={cn(
                                     "relative transition-colors font-medium text-sm py-2 pb-2.5 hover:text-foreground",
                                     isActive ? "text-primary font-semibold" : "text-muted-foreground"

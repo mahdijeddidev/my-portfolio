@@ -106,9 +106,15 @@
       "openGraphSiteName": "Mahdi Jeddi Portfolio"
     },
     "contact": {
-      "title": "Contact Me",
+      "title": "Contact Mahdi Jeddi | Frontend Developer",
+
       "description": "Get in touch with Mahdi Jeddi for freelance work, remote full-stack positions, or engineering collaborations.",
       "openGraphImageAlt": "Contact Mahdi Jeddi - React & Next.js Developer"
+    },
+    "about": {
+      "title": "About Mahdi Jeddi | Frontend & Full Stack Developer",
+      "description": "Learn about Mahdi Jeddi, a Frontend Developer specializing in React, Next.js, TypeScript and modern web engineering. Discover my experience, projects and development philosophy.",
+      "openGraphImageAlt": "About Mahdi Jeddi - Frontend Developer"
     }
   }
 }

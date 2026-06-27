@@ -30,8 +30,8 @@ export default function StructuredData({ locale }: Props) {
         ],
         "sameAs": [
             "https://www.linkedin.com/in/mahdi-jeddi/",
-            "https://github.com/mahdijeddy",
-            "https://t.me/mehdijeddi"
+            "https://github.com/mahdijeddidev",
+            "https://t.me/mahdijeddidev"
         ]
     };
 

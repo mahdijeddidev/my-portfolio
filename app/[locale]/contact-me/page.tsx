@@ -18,7 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const t = await getTranslations({ locale, namespace: "metadata.contact" });
 
     const baseUrl = 'https://mahdijeddi.ir'
-    const url = `${baseUrl}/${locale}`;
+    const url = `${baseUrl}/${locale}/contact-me`;
+
     const ogImageUrl = `${baseUrl}/og-en.png`
 
     return {
@@ -27,16 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         alternates: {
             canonical: url,
             languages: {
-                en: `${baseUrl}/en`,
-                fa: `${baseUrl}/fa`,
-            },
+                en: `${baseUrl}/en/contact-me`,
+                fa: `${baseUrl}/fa/contact-me`,
+                "x-default": `${baseUrl}/en/contact-me`,
+            }
         },
         openGraph: {
             title: t("title"),
             description: t("description"),
             url,
             siteName: "Mahdi Jeddi",
-            type: "website",
+            type: "profile",
             locale: locale === "fa" ? "fa_IR" : "en_US",
             images: [
                 {
@@ -67,7 +69,7 @@ async function ContactMePage({ params }: Props) {
 
     // Interactive Channels Setup
     const phone = "+98 922 507 4085";
-    const email = "mahdiproguni@gmail.com";
+    const email = "mahdijeddidev@gmail.com";
     const communicationChannels = [
         {
             title: t("phoneTitle"),
@@ -79,27 +81,28 @@ async function ContactMePage({ params }: Props) {
         {
             title: t("emailTitle"),
             value: email,
-            href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdiproguni@gmail.com",
+            href: "https://mail.google.com/mail/?view=cm&fs=1&to=mahdijeddidev@gmail.com",
             icon: Email,
             // badgeText: t("fastestBadge"),
-        },
-        {
-            title: t("telegramTitle"),
-            value: "@mehdijeddi",
-            href: "https://t.me/mehdijeddi",
-            icon: TelegramIcon,
-            badgeText: t("fastestBadge"),
         },
         {
             title: t("linkedinTitle"),
             value: "Mahdi Jeddi",
             href: "https://www.linkedin.com/in/mahdi-jeddi/",
             icon: LinkedinIcon,
+            badgeText: t("fastestBadge"),
+        },
+        {
+            title: t("telegramTitle"),
+            value: "@mahdijeddidev",
+            href: "https://t.me/mahdijeddidev",
+            icon: TelegramIcon,
+            badgeText: t("fastestBadge"),
         },
         {
             title: t("githubTitle"),
-            value: "mahdijeddy",
-            href: "https://github.com/mahdijeddy",
+            value: "mahdijeddidev",
+            href: "https://github.com/mahdijeddidev",
             icon: GithubIcon,
         },
     ];
@@ -107,7 +110,7 @@ async function ContactMePage({ params }: Props) {
     return (
         <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col items-center justify-center lg:h-[calc(100vh-4rem)] py-8 lg:py-0 overflow-hidden">
 
-            <ContactStructuredData email={email} phone={phone} />
+            <ContactStructuredData email={email} phone={phone} locale={locale} />
 
             {/* Background Decorative Radial Mask */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl -z-10 pointer-events-none" />
@@ -119,7 +122,6 @@ async function ContactMePage({ params }: Props) {
                 <AvailabilityPanel
                     badge={t("badge")}
                     title={t("title")}
-                    // subtitle={t.rich("subtitle" , ()=>{ return <HandMarker>{t("advancedClientSideDeveloper")}</HandMarker> })}
                     subtitle={t.rich("subtitle", {
                         marker: (chunks) => <HandMarker>{chunks}</HandMarker>
                     })}
@@ -131,7 +133,7 @@ async function ContactMePage({ params }: Props) {
                 <div className="w-full max-w-md flex flex-col gap-3.5">
                     {communicationChannels.map((channel, idx) => (
                         <ContactCard
-                            key={idx}
+                            key={channel.href}
                             title={channel.title}
                             value={channel.value}
                             href={channel.href}

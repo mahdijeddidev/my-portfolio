@@ -40,6 +40,16 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mahdijeddi.ir"),
+  applicationName: "Mahdi Jeddi",
+  creator: "Mahdi Jeddi",
+  publisher: "Mahdi Jeddi",
+  category: "Technology",
+  authors: [
+    {
+      name: "Mahdi Jeddi",
+      url: "https://mahdijeddi.ir"
+    }
+  ],
   robots: {
     index: true,
     follow: true,
@@ -76,6 +86,7 @@ export default async function RootLayout({ children, params }: Props) {
 
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider >
+
             <Navbar />
 
             <FloatingBackground />
@@ -88,6 +99,8 @@ export default async function RootLayout({ children, params }: Props) {
 
           </ThemeProvider>
         </NextIntlClientProvider>
+
+        {/* ----   vercel metrics ---- */}
         <Analytics />
         <SpeedInsights />
 
