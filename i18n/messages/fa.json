@@ -17,7 +17,9 @@
     "downloadResume": "دانلود رزومه",
     "contactMe": "ارتباط با من",
     "more": "بیشتر ...",
-    "seoSubtitle": "توسعه‌دهنده فرانت‌اند و Next.js"
+    "seoSubtitle": "توسعه‌دهنده فرانت‌اند و Next.js",
+    "resumeEnglish": "رزومه انگلیسی",
+    "resumePersian": "رزومه فارسی"
   },
   "AboutPage": {
     "badge": "درباره من",

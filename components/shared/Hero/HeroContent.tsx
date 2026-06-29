@@ -1,8 +1,7 @@
-import MyIcon from "@/components/shared/Icon/MyIcons";
 import { Link } from "@/i18n/navigation";
-import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 import { getTranslations } from "next-intl/server";
 import HandMarker from "../Text/HandMarker";
+import ResumeButton from "./ResumeButton";
 
 interface HeroContentProps {
     children?: React.ReactNode;
@@ -57,20 +56,13 @@ async function HeroContent({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2 w-full">
 
-                <a
-                    href="/resume-persian.pdf"
-                    download="Mahdi-Jeddi-Resume.pdf"
-                    className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-primary/90 transition-all cursor-pointer active:scale-98"
-                >
-                    <MyIcon icon={ArrowDown01Icon} size={20} className="animate-bounce font-semibold" />
-                    {t('downloadResume')}
-                </a>
+                <ResumeButton locale={locale} />
 
                 <a
                     href={`/${locale}/contact-me`}
-                    className="inline-flex items-center font-semibold text-foreground px-6 py-3 rounded-lg border border-border bg-card hover:bg-muted transition-all cursor-pointer active:scale-98"
+                    className="w-full sm:w-auto h-12 px-6 inline-flex items-center justify-center font-semibold text-foreground rounded-lg border border-border bg-card hover:bg-muted transition-all cursor-pointer active:scale-98 shadow-sm"
                 >
                     {t('contactMe')}
                 </a>

@@ -14,10 +14,12 @@
     "title": "Hi, I am",
     "name": "Mahdi Jeddi",
     "description": "A Full Stack Developer specializing in building scalable web architectures and fluid application layouts.",
-    "downloadResume": "Download Resume",
     "contactMe": "Get In Touch",
     "more": "More ...",
-    "seoSubtitle": "Frontend & Next.js Developer"
+    "seoSubtitle": "Frontend & Next.js Developer",
+    "downloadResume": "Download Resume",
+    "resumeEnglish": "English Resume",
+    "resumePersian": "Persian Resume"
   },
   "AboutPage": {
     "badge": "About Me",
